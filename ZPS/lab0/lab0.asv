@@ -1,0 +1,16 @@
+clear all;
+close all;
+M = 60;
+n = 3;
+pi = 3.14;
+theta = 0:0.01:2*pi;
+obrazy = []
+
+for m = 0 : 1 : 64;
+    rho = sin(3*theta + m*pi/10);
+    polar(theta,rho, 'm');
+    lel = getframe(gcf, [100, m*8 + 60 , 370, 10]);
+    obrazy = [lel.cdata; obrazy];
+end
+figure(2)
+image(obrazy)
