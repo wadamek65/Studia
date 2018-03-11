@@ -5,9 +5,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.Double;
+import java.util.*;
+
+class DistanceComparator implements Comparator<point1D> {
+    public int compare(point1D p1, point1D p2) {
+        if (p1.distance() == p2.distance()){
+            return 0;
+        }
+        return p1.distance() < p2.distance() ? -1 : 1;
+    }
+}
+
 
 class point1D{
     protected double x;
+
 
     public point1D(){
         x = 0;
@@ -22,8 +34,9 @@ class point1D{
     }
 
     public void print_point(){
-        System.out.println(x);
+        System.out.print(x+" ");
     }
+
 }
 
 class point2D extends point1D{
@@ -45,7 +58,7 @@ class point2D extends point1D{
 
     public void print_point(){
         super.print_point();
-        System.out.println(y);
+        System.out.print(y+" ");
     }
 }
 
@@ -70,14 +83,14 @@ class point3D extends point2D{
 
     public void print_point(){
         super.print_point();
-        System.out.println(z);
+        System.out.print(z);
     }
 }
 
 
 public class Points {
 
-    public static List<Object> read_points(String file_name){
+    public static List<point1D> read_points(String file_name){
 
         try {
             FileReader file_reader = new FileReader(file_name);
@@ -85,10 +98,9 @@ public class Points {
 
             String line;
             try {
-                List<Object> point_list = new ArrayList<>();
+                List<point1D> point_list = new ArrayList<>();
 
                 while ((line = buffer.readLine()) != null) {
-                    System.out.println(line);
                     String[] split = line.split("\\s+");
                     if (split.length == 3) {
                         double x_val = Double.parseDouble(split[0]);
@@ -115,19 +127,19 @@ public class Points {
     }
 
     public static void main(String[] args) {
-        //File file = new File("D:\\JAVA\\JavaEx2\\src\\points.txt");
-        //System.out.println(file.exists());
-        //System.out.println(file.canRead());
 
-        point3D point = new point3D(1, 2, 5);
-        //point.print_point();
-
-        point2D point2 = new point2D(8, 14);
-        //point2.print_point();
-
-        List<Object> points_list = read_points("D:\\JAVA\\JavaEx2\\src\\points.txt");
+        List<point1D> points_list = read_points("D:\\REPOS\\Studia\\JAVA\\3d_points\\src\\points.txt");
         for (int i=0; i < points_list.size(); i++) {
-            points_list.get(i)print_point();
+            points_list.get(i).print_point();
+            System.out.println();
+        }
+
+        System.out.println();
+
+        Collections.sort(points_list, new DistanceComparator());
+        for (int i=0; i < points_list.size(); i++) {
+            points_list.get(i).print_point();
+            System.out.println();
         }
     }
 }
