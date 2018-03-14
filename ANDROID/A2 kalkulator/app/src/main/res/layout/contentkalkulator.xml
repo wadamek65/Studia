@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android=
+    "http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="2dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp">
+
+        <EditText
+            android:id="@+id/inputText"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/number1"
+            android:text="1"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+        <Button
+            android:id="@+id/number2"
+            android:text="2"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+        <Button
+            android:id="@+id/number3"
+            android:text="3"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="70dp"
+             />
+
+        <Button
+            android:id="@+id/operation_plus"
+            android:text="+"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/number4"
+            android:text="4"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+        <Button
+            android:id="@+id/number5"
+            android:text="5"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+        <Button
+            android:id="@+id/number6"
+            android:text="6"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="70dp"/>
+        <Button
+            android:id="@+id/operation_minus"
+            android:text="-"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/number7"
+            android:text="7"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+        <Button
+            android:id="@+id/number8"
+            android:text="8"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+        <Button
+            android:id="@+id/number9"
+            android:text="9"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="70dp"/>
+        <Button
+            android:id="@+id/operation_multi"
+            android:text="*"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/number0"
+            android:text="0"
+            android:layout_marginLeft="70dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="140dp"/>
+        <Button
+            android:id="@+id/operation_div"
+            android:text="/"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/operation_sqrt"
+            android:text="sqrt"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="210dp"/>
+        <Button
+            android:id="@+id/operation_square"
+            android:text="^2"
+            android:layout_width="70dp"
+            android:layout_height="70dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/operation_result"
+            android:text="="
+            android:layout_width="70dp"
+            android:layout_height="70dp"/>
+        <Button
+            android:id="@+id/operation_clear"
+            android:text="C"
+            android:layout_width="70dp"
+            android:layout_height="70dp"/>
+    </LinearLayout>
+</LinearLayout>
