@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+
+    <EditText
+        android:id="@+id/inputText"
+        android:layout_width="347dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="372dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toEndOf="@+id/text_history"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/operation_plus"
+        android:text="+"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="21dp"
+        app:layout_constraintTop_toBottomOf="@+id/operation_result"
+        android:layout_marginLeft="-9dp"
+        app:layout_constraintLeft_toLeftOf="@+id/operation_result" />
+
+
+    <Button
+        android:id="@+id/number4"
+        android:text="4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="-1dp"
+        app:layout_constraintLeft_toLeftOf="@+id/number1"
+        android:layout_marginTop="-1dp"
+        app:layout_constraintTop_toBottomOf="@+id/number1" />
+
+    <Button
+        android:id="@+id/number6"
+        android:text="6"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toRightOf="@+id/number5"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginTop="-1dp"
+        app:layout_constraintTop_toBottomOf="@+id/number3" />
+
+    <Button
+        android:id="@+id/operation_minus"
+        android:text="-"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="21dp"
+        app:layout_constraintTop_toBottomOf="@+id/operation_result"
+        app:layout_constraintLeft_toRightOf="@+id/operation_plus"
+        android:layout_marginLeft="0dp" />
+
+
+    <Button
+        android:id="@+id/number7"
+        android:text="7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="-1dp"
+        app:layout_constraintTop_toBottomOf="@+id/number4"
+        android:layout_marginLeft="-1dp"
+        app:layout_constraintLeft_toLeftOf="@+id/number4" />
+
+    <Button
+        android:id="@+id/number9"
+        android:text="9"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toRightOf="@+id/number8"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginTop="-1dp"
+        app:layout_constraintTop_toBottomOf="@+id/number6" />
+
+    <Button
+        android:id="@+id/operation_multi"
+        android:text="*"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/operation_plus"
+        android:layout_marginLeft="-1dp"
+        app:layout_constraintLeft_toLeftOf="@+id/operation_plus" />
+
+
+    <Button
+        android:id="@+id/number0"
+        android:text="0"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="-1dp"
+        app:layout_constraintTop_toBottomOf="@+id/number8"
+        android:layout_marginLeft="49dp"
+        app:layout_constraintLeft_toLeftOf="@+id/number7" />
+
+    <Button
+        android:id="@+id/operation_div"
+        android:text="/"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@+id/operation_minus"
+        app:layout_constraintLeft_toRightOf="@+id/operation_multi"
+        android:layout_marginLeft="2dp" />
+
+
+    <Button
+        android:id="@+id/operation_sqrt"
+        android:text="sqrt"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="13dp"
+        app:layout_constraintTop_toBottomOf="@+id/operation_div"
+        app:layout_constraintLeft_toRightOf="@+id/operation_square"
+        android:layout_marginLeft="2dp" />
+
+
+    <Button
+        android:id="@+id/operation_clear"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="C"
+        app:layout_constraintLeft_toRightOf="@+id/operation_result"
+        android:layout_marginLeft="3dp"
+        app:layout_constraintTop_toTopOf="@+id/operation_result"
+        android:layout_marginTop="-1dp" />
+
+    <Button
+        android:id="@+id/number2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="2"
+        app:layout_constraintLeft_toRightOf="@+id/number1"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="-1dp"
+        app:layout_constraintTop_toTopOf="@+id/number1" />
+
+    <Button
+        android:id="@+id/number3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="3"
+        app:layout_constraintLeft_toRightOf="@+id/number2"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginTop="-1dp"
+        app:layout_constraintTop_toTopOf="@+id/number1" />
+
+    <Button
+        android:id="@+id/operation_result"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="="
+        android:layout_marginLeft="247dp"
+        app:layout_constraintLeft_toLeftOf="@+id/number1"
+        app:layout_constraintTop_toTopOf="@+id/number1"
+        android:layout_marginTop="-1dp" />
+
+    <Button
+        android:id="@+id/operation_square"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="^2"
+        android:layout_marginTop="13dp"
+        app:layout_constraintTop_toBottomOf="@+id/operation_multi"
+        android:layout_marginLeft="-1dp"
+        app:layout_constraintLeft_toLeftOf="@+id/operation_multi" />
+
+    <Button
+        android:id="@+id/number8"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginTop="-1dp"
+        android:text="8"
+        app:layout_constraintLeft_toRightOf="@+id/number7"
+        app:layout_constraintTop_toBottomOf="@+id/number5" />
+
+    <Button
+        android:id="@+id/number5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="-1dp"
+        android:text="5"
+        app:layout_constraintLeft_toRightOf="@+id/number4"
+        app:layout_constraintTop_toBottomOf="@+id/number2" />
+
+    <Button
+        android:id="@+id/number1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="0dp"
+
+        android:layout_marginTop="-25dp"
+        android:text="1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/inputText"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputText" />
+
+    <TextView
+        android:id="@+id/text_history"
+        android:layout_width="886dp"
+        android:layout_height="638dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>
