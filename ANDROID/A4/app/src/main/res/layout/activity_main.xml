@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.student.wojciechadameka4.MainActivity">
+
+    <TextView
+        android:layout_width="256dp"
+        android:layout_height="41dp"
+        android:text="[pam43] Wojciech Adamek 226337 A4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:id="@+id/textView" />
+
+    <Button
+        android:id="@+id/contacts_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="72dp"
+        android:text="DIAL"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/telephone_number_textedit"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/messages_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="3dp"
+        android:text="Send Message"
+        app:layout_constraintLeft_toLeftOf="@+id/message_body_textedit"
+        app:layout_constraintTop_toBottomOf="@+id/message_body_textedit" />
+
+    <Button
+        android:id="@+id/maps_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maps"
+        app:layout_constraintLeft_toRightOf="@+id/maps_body_textedit"
+        android:layout_marginLeft="6dp"
+        app:layout_constraintTop_toTopOf="@+id/maps_body_textedit"
+        android:layout_marginTop="0dp" />
+
+    <EditText
+        android:id="@+id/message_telephone_number_textedit"
+        android:layout_width="336dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="16dp"
+        android:hint="Number"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="164dp" />
+
+    <EditText
+        android:id="@+id/message_body_textedit"
+        android:layout_width="337dp"
+        android:layout_height="125dp"
+        android:hint="Body"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/message_telephone_number_textedit"
+        android:layout_marginLeft="-7dp"
+        app:layout_constraintLeft_toLeftOf="@+id/message_telephone_number_textedit" />
+
+    <EditText
+        android:id="@+id/telephone_number_textedit"
+        android:layout_width="221dp"
+        android:layout_height="47dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="0dp"
+        android:hint="Telephone Number"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/contacts_button" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Telefon"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/telephone_number_textedit"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/telephone_number_textedit" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SMS"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/message_telephone_number_textedit"
+        android:layout_marginLeft="-3dp"
+        app:layout_constraintLeft_toLeftOf="@+id/message_telephone_number_textedit" />
+
+    <EditText
+        android:id="@+id/maps_body_textedit"
+        android:layout_width="243dp"
+        android:layout_height="48dp"
+        android:hint="Find a place"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="424dp" />
+
+    <TextView
+        android:id="@+id/maps_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Google Maps"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="@+id/maps_body_textedit"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/maps_body_textedit" />
+
+</android.support.constraint.ConstraintLayout>
