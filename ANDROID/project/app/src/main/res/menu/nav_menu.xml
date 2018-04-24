@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/home"
+            />
+        <item
+            android:id="@+id/nav_aggregates"
+            android:title="@string/aggregates"
+            />
+        <item
+            android:id="@+id/nav_outliers"
+            android:title="@string/outliers"
+            />
+    </group>
+</menu>
