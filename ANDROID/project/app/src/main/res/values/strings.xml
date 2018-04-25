@@ -4,6 +4,6 @@
     <string name="aggregates">Agreggates</string>
     <string name="outliers">Outliers</string>
     <string name="home_description">This project is an android application implementation of the web-app Healthiness Of Data. Click the button below to visit the official site.</string>
-    <string name="aggregates_description">This view calculates various aggregates - minimum found value, maximum value, standard deviation, mean and distribution of data.</string>
+    <string name="aggregates_description">This view calculates various aggregates - minimum found value, maximum value, standard deviation, mean, coverage and distribution of data.</string>
     <string name="outliers_description">This view searches for outliers in the queried dataset.</string>
 </resources>
