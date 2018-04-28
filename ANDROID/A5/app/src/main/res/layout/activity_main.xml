@@ -7,13 +7,43 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/main_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/main_label"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="User Info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/call_label"/>
+
+    <TextView
+        android:id="@+id/call_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call info"
+        app:layout_constraintEnd_toEndOf="@+id/main_label"
+        app:layout_constraintStart_toStartOf="@+id/main_label"
+        app:layout_constraintTop_toBottomOf="@+id/main_label"
+        app:layout_constraintBottom_toTopOf="@id/sms_label"/>
+
+    <TextView
+        android:id="@+id/sms_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sms info"
+        app:layout_constraintEnd_toEndOf="@+id/call_label"
+        app:layout_constraintStart_toStartOf="@+id/call_label"
+        app:layout_constraintTop_toBottomOf="@+id/call_label"
+        app:layout_constraintBottom_toTopOf="@id/state_label" />
+
+    <TextView
+        android:id="@+id/state_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="State info"
+        app:layout_constraintEnd_toEndOf="@+id/sms_label"
+        app:layout_constraintStart_toStartOf="@+id/sms_label"
+        app:layout_constraintTop_toBottomOf="@+id/sms_label"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
