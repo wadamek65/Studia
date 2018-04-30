@@ -10,7 +10,5 @@ public class Main {
         myFrame.add(l);
         myFrame.pack();
         myFrame.setVisible(true);
-
-
     }
 }
