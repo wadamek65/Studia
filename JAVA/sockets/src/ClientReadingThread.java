@@ -7,9 +7,10 @@ public class ClientReadingThread extends Thread {
     }
 
     public void run() {
-        String serverMessage;
         try {
+            String serverMessage;
             while ((serverMessage = reader.readLine()) != null) {
+                if (serverMessage.equals("done")) return;
                 System.out.println(serverMessage);
             }
         } catch (Exception ex) {

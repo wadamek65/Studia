@@ -11,6 +11,7 @@ public class ServerClientHandler extends Thread{
     private PrintWriter output;
     private BufferedReader input;
     private String username;
+    private boolean loggedIn = false;
     private static final DBHandler serverDB = new DBHandler();
     private static final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 
@@ -24,9 +25,14 @@ public class ServerClientHandler extends Thread{
         }
     }
 
-    private void printServerMessage(String msg) {
+    private boolean printServerMessage(String msg) {
+        if(msg.equals("/quit")) return false;
         String currentTime = timeFormat.format(new Timestamp(System.currentTimeMillis()));
-        System.out.println(currentTime+' '+username+": "+msg);
+        String message = currentTime+' '+username+": "+msg;
+        System.out.println(message);
+        output.println("Message sent.");
+        serverDB.logMessage(message);
+        return true;
     }
 
     private void stopConnection() {
@@ -35,9 +41,17 @@ public class ServerClientHandler extends Thread{
             input.close();
             output.close();
             clientSocket.close();
-            System.out.println(currentTime+' '+username+" has disconnected!");
+            if (username != null) {
+                String message = currentTime+' '+username+" has disconnected!";
+                System.out.println(message);
+                serverDB.logMessage(message);
+            }
         } catch(IOException ex) {
-            System.out.println(currentTime+' '+username+" has disconnected!");
+            if (username != null) {
+                String message = currentTime+' '+username+" has disconnected!";
+                System.out.println(message);
+                serverDB.logMessage(message);
+            }
         }
     }
 
@@ -60,30 +74,60 @@ public class ServerClientHandler extends Thread{
         try {
             output.println("Welcome to the server. Do you want to log in or register? Type in 'login' or 'register'.");
             String clientMessage;
-            while((clientMessage = input.readLine()) != null ) {
-                if(clientMessage.equals("login")) {
-                    output.println("Type in your username.");
-                    String user = getCorrectInput();
-                    output.println("Type in your password.");
-                    String password = getCorrectInput();
-                    // AUTHENTICATE
-                } else if(clientMessage.equals("register")) {
-                    output.println("Type in your desired login username.");
-                    String username = getCorrectInput();
-                    output.println("Type in your password.");
-                    String password = getCorrectInput();
-                    output.println("Re-type your password.");
-                    String rePassword = getCorrectInput();
-                    // REGISTER
-                } else {
+            while((clientMessage  = input.readLine()) != null ) {
+                if(loggedIn) {
+                    if(!printServerMessage(clientMessage)) break;
+                }
+
+                while(!loggedIn) {
+                    if (clientMessage.equals("login")) {
+                        clientMessage = " ";
+                        output.println("Type in your username.");
+                        String user = getCorrectInput();
+                        output.println("Type in your password.");
+                        String password = getCorrectInput();
+                        if (serverDB.login(user, password)) {
+                            output.println("Login successful.");
+                            username = user;
+
+                            if (username != null) {
+                                String currentTime = timeFormat.format(new Timestamp(System.currentTimeMillis()));
+                                String message = currentTime+' '+username+" has connected!";
+                                System.out.println(message);
+                                serverDB.logMessage(message);
+                            }
+                            loggedIn = true;
+                            break;
+                        } else {
+                            output.println("The password or username is wrong.");
+                        }
+                    } else if (clientMessage.equals("register")) {
+                        clientMessage = " ";
+                        output.println("Type in your desired login username.");
+                        String user = getCorrectInput();
+                        output.println("Type in your password.");
+                        String password = getCorrectInput();
+                        output.println("Re-type your password.");
+                        String rePassword = getCorrectInput();
+                        if (!password.equals(rePassword)) {
+                            output.println("Passwords don't match.");
+                        } else {
+                            if (serverDB.register(user, password)) {
+                                output.println("Registered successfully.");
+                            } else {
+                                output.println("There is already a user registered with this username.");
+                            }
+                        }
+                    }
                     output.println("Please type in 'login' or 'register'.");
+                    clientMessage = input.readLine();
                 }
             }
 
             stopConnection();
         } catch(IOException ex) {
             String currentTime = timeFormat.format(new Timestamp(System.currentTimeMillis()));
-            System.out.println(currentTime+' '+username+" has disconnected!");
+            if (username != null) System.out.println(currentTime+' '+username+" has disconnected!");
         }
     }
 }

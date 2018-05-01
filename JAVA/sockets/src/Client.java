@@ -38,9 +38,14 @@ public class Client {
         inputReader.start();
         Scanner systemReader = new Scanner(System.in);
         String clientMessage, outputMessage;
-
-        while ((clientMessage = systemReader.next()) != null) {
+        clientMessage = systemReader.next();
+        while (clientMessage != null) {
             output.println(clientMessage);
+            if (!inputReader.isAlive()) {
+                stopConnection();
+                return;
+            }
+            clientMessage = systemReader.next();
         }
 
 //        try {
