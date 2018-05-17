@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AggregatesFragment">
 
     <TextView
@@ -18,90 +18,143 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start date:"
+        app:layout_constraintBottom_toBottomOf="@+id/date_start_input"
+        app:layout_constraintEnd_toStartOf="@id/date_start_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/date_start_input" />
+
     <EditText
         android:id="@+id/date_start_input"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:hint="YY-MM-DD"
         android:tooltipText="Date Start*"
         app:layout_constraintBottom_toTopOf="@id/date_end_input"
         app:layout_constraintEnd_toEndOf="@id/aggregates_desc"
         app:layout_constraintStart_toStartOf="@id/aggregates_desc"
         app:layout_constraintTop_toBottomOf="@id/aggregates_desc" />
 
-    <EditText
-        android:layout_width="200dp"
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="End date:"
+        app:layout_constraintBottom_toBottomOf="@+id/date_end_input"
+        app:layout_constraintEnd_toStartOf="@id/date_end_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/date_end_input" />
+
+    <EditText
         android:id="@+id/date_end_input"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="YY-MM-DD"
         android:tooltipText="Date End*"
-        app:layout_constraintEnd_toEndOf="@id/aggregates_desc"
-        app:layout_constraintStart_toStartOf="@id/aggregates_desc"
-        app:layout_constraintTop_toBottomOf="@id/date_start_input"
         app:layout_constraintBottom_toTopOf="@id/cord_id_input"
-        />
+        app:layout_constraintEnd_toEndOf="@id/aggregates_desc"
+        app:layout_constraintStart_toStartOf="@id/aggregates_desc"
+        app:layout_constraintTop_toBottomOf="@id/date_start_input" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cord ID:"
+        app:layout_constraintBottom_toBottomOf="@+id/cord_id_input"
+        app:layout_constraintEnd_toStartOf="@id/cord_id_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/cord_id_input" />
 
     <EditText
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
         android:id="@+id/cord_id_input"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
         android:tooltipText="Cord ID*"
-        app:layout_constraintEnd_toEndOf="@id/aggregates_desc"
-        app:layout_constraintStart_toStartOf="@id/aggregates_desc"
-        app:layout_constraintTop_toBottomOf="@id/date_end_input"
         app:layout_constraintBottom_toTopOf="@id/acronym_input"
-        />
+        app:layout_constraintEnd_toEndOf="@id/aggregates_desc"
+        app:layout_constraintStart_toStartOf="@id/aggregates_desc"
+        app:layout_constraintTop_toBottomOf="@id/date_end_input" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Acronym:"
+        app:layout_constraintBottom_toBottomOf="@+id/acronym_input"
+        app:layout_constraintEnd_toStartOf="@id/acronym_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/acronym_input" />
 
     <EditText
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
         android:id="@+id/acronym_input"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
         android:tooltipText="Acronym*"
-        app:layout_constraintEnd_toEndOf="@id/aggregates_desc"
-        app:layout_constraintStart_toStartOf="@id/aggregates_desc"
-        app:layout_constraintTop_toBottomOf="@id/cord_id_input"
         app:layout_constraintBottom_toTopOf="@id/kpi_input"
-        />
+        app:layout_constraintEnd_toEndOf="@id/aggregates_desc"
+        app:layout_constraintStart_toStartOf="@id/aggregates_desc"
+        app:layout_constraintTop_toBottomOf="@id/cord_id_input" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KPI:"
+        app:layout_constraintBottom_toBottomOf="@+id/kpi_input"
+        app:layout_constraintEnd_toStartOf="@id/kpi_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/kpi_input" />
 
     <EditText
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
         android:id="@+id/kpi_input"
-        android:tooltipText="KPI Basename*"
-        app:layout_constraintEnd_toEndOf="@id/aggregates_desc"
-        app:layout_constraintStart_toStartOf="@id/aggregates_desc"
-        app:layout_constraintTop_toBottomOf="@id/acronym_input"
-        app:layout_constraintBottom_toTopOf="@id/bins_input"
-        />
-
-    <EditText
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:id="@+id/bins_input"
-        android:tooltipText="Histogram Bins"
+        android:tooltipText="KPI Basename*"
+        app:layout_constraintBottom_toTopOf="@id/bins_input"
         app:layout_constraintEnd_toEndOf="@id/aggregates_desc"
         app:layout_constraintStart_toStartOf="@id/aggregates_desc"
-        app:layout_constraintTop_toBottomOf="@id/kpi_input"
+        app:layout_constraintTop_toBottomOf="@id/acronym_input" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bins:"
+        app:layout_constraintBottom_toBottomOf="@+id/bins_input"
+        app:layout_constraintEnd_toStartOf="@id/bins_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bins_input" />
+
+    <EditText
+        android:id="@+id/bins_input"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Default 10"
+        android:tooltipText="Histogram Bins"
         app:layout_constraintBottom_toBottomOf="@id/fetch_button"
-        />
+        app:layout_constraintEnd_toEndOf="@id/aggregates_desc"
+        app:layout_constraintStart_toStartOf="@id/aggregates_desc"
+        app:layout_constraintTop_toBottomOf="@id/kpi_input" />
 
     <Button
+        android:id="@+id/fetch_button"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:id="@+id/fetch_button"
         android:text="Fetch Data"
         app:layout_constraintBottom_toBottomOf="@id/aggregates_footer"
-        app:layout_constraintTop_toBottomOf="@id/bins_input"
+        app:layout_constraintEnd_toStartOf="@id/fill_button"
         app:layout_constraintStart_toStartOf="@id/bins_input"
-        app:layout_constraintEnd_toStartOf="@id/fill_button"/>
+        app:layout_constraintTop_toBottomOf="@id/bins_input" />
 
     <Button
+        android:id="@+id/fill_button"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:id="@+id/fill_button"
         android:text="Auto Fill"
         app:layout_constraintBottom_toBottomOf="@id/aggregates_footer"
-        app:layout_constraintTop_toBottomOf="@id/bins_input"
+        app:layout_constraintEnd_toEndOf="@id/bins_input"
         app:layout_constraintStart_toEndOf="@id/fetch_button"
-        app:layout_constraintEnd_toEndOf="@id/bins_input"/>
+        app:layout_constraintTop_toBottomOf="@id/bins_input" />
 
     <TextView
         android:id="@+id/aggregates_footer"
@@ -109,7 +162,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
-        android:text="Footer"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/fill_button"
         app:layout_constraintStart_toStartOf="@id/fetch_button"

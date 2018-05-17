@@ -1,10 +1,28 @@
 package com.example.wojta.project;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.LegendRenderer;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
+import com.jjoe64.graphview.series.BarGraphSeries;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
+import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.PointsGraphSeries;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
+
+import java.util.Set;
 
 public class AggregatesActivity extends AppCompatActivity {
 
@@ -13,12 +31,64 @@ public class AggregatesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aggregates);
 
-        final TextView resp = findViewById(R.id.request_response);
+        GraphView graph = findViewById(R.id.graph_histogram);
+
 
         Bundle responseData = getIntent().getExtras();
         if (responseData != null) {
-            String responseString = responseData.getString("responseData");
-            resp.setText(responseString);
+            double[] arrayX = responseData.getDoubleArray("x_array");
+            double[] arrayY = responseData.getDoubleArray("y_array");
+
+            DataPoint[] histogramData = new DataPoint[arrayX.length];
+            for (int i = 0; i < arrayX.length; i++) {
+                histogramData[i] = new DataPoint(arrayY[i], arrayX[i]);
+            }
+
+            BarGraphSeries<DataPoint> series = new BarGraphSeries<>(histogramData);
+            graph.addSeries(series);
+
+            series.setDataWidth(1);
+            series.setSpacing(0);
+
+            graph.getViewport().setXAxisBoundsManual(true);
+            graph.getViewport().setMinX(series.getLowestValueX() - series.getLowestValueX()/20);
+            graph.getViewport().setMaxX(series.getHighestValueX() + series.getLowestValueX()/20);
+            double diff = series.getHighestValueX() - series.getLowestValueX();
+
+            PointsGraphSeries<DataPoint> series2 = new PointsGraphSeries<>(new DataPoint[] {
+                    new DataPoint(series.getLowestValueX()+diff/4, responseData.getDouble("mean")),
+            });
+
+            PointsGraphSeries<DataPoint> series3 = new PointsGraphSeries<>(new DataPoint[] {
+                    new DataPoint(series.getLowestValueX()+diff/3, responseData.getDouble("std_deviation")),
+            });
+
+            PointsGraphSeries<DataPoint> series4 = new PointsGraphSeries<>(new DataPoint[] {
+                    new DataPoint(series.getLowestValueX()+diff/2, responseData.getDouble("min_val")),
+            });
+
+            PointsGraphSeries<DataPoint> series5 = new PointsGraphSeries<>(new DataPoint[] {
+                    new DataPoint(series.getLowestValueX()+diff/5, responseData.getDouble("max_val"))
+            });
+
+            graph.addSeries(series2);
+            graph.addSeries(series3);
+            graph.addSeries(series4);
+            graph.addSeries(series5);
+            series2.setColor(Color.GREEN);
+            series2.setShape(PointsGraphSeries.Shape.TRIANGLE);
+            series3.setColor(Color.RED);
+            series3.setShape(PointsGraphSeries.Shape.TRIANGLE);
+            series4.setColor(Color.YELLOW);
+            series4.setShape(PointsGraphSeries.Shape.TRIANGLE);
+            series5.setColor(Color.BLACK);
+            series5.setShape(PointsGraphSeries.Shape.TRIANGLE);
+            series2.setTitle("Mean");
+            series3.setTitle("Standard Deviation");
+            series4.setTitle("Minimum");
+            series5.setTitle("Maximum");
+            graph.getLegendRenderer().setVisible(true);
+            graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
         }
     }
 }

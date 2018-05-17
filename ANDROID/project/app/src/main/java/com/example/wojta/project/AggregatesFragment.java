@@ -14,8 +14,16 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class AggregatesFragment extends Fragment {
     @Override
@@ -59,27 +67,58 @@ public class AggregatesFragment extends Fragment {
 
                 String completeUrl = baseUrl + cordID + '/' + acronym + "?date_start=" + dateStart + "&date_end=" + dateEnd + "&kpi_basename=" + kpi + "&bins=" + bins;
                 desc.setText("Fetching data...");
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, completeUrl,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Intent aggregatesIntent = new Intent(getActivity(), AggregatesActivity.class);
-                            Bundle responseData = new Bundle();
-                            responseData.putString("responseData", response);
-                            aggregatesIntent.putExtras(responseData);
-                            startActivity(aggregatesIntent);
-                            //getActivity().finish();
-                        }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            desc.setText(error.toString());
-                        }
+                JsonObjectRequest json = new JsonObjectRequest(Request.Method.GET, completeUrl, null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Intent aggregatesIntent = new Intent(getActivity(), AggregatesActivity.class);
+                                Bundle responseData = new Bundle();
+                                try {
+
+                                    Double minValue = response.getDouble("min_val");
+                                    Double maxValue = response.getDouble("max_val");
+                                    Double mean = response.getDouble("mean");
+                                    Double stdDeviation = response.getDouble("std_deviation");
+                                    JSONArray array = response.getJSONArray("distribution");
+                                    JSONArray xarray = (JSONArray) array.get(0);
+                                    JSONArray yarray = (JSONArray) array.get(1);
+
+                                    double[] arrayX = new double[xarray.length()];
+                                    double[] arrayY = new double[yarray.length()];
+
+                                    for (int i = 0; i < xarray.length(); i++){
+                                        arrayX[i] = xarray.getDouble(i);
+                                    }
+
+                                    for (int i = 0; i < yarray.length()-1; i++){
+                                        arrayY[i] = yarray.getDouble(i);
+                                    }
+
+                                    responseData.putDoubleArray("x_array", arrayX);
+                                    responseData.putDoubleArray("y_array", arrayY);
+
+                                    responseData.putDouble("min_val", minValue);
+                                    responseData.putDouble("max_val", maxValue);
+                                    responseData.putDouble("mean", mean);
+                                    responseData.putDouble("std_deviation", stdDeviation);
+
+                                    aggregatesIntent.putExtras(responseData);
+                                    desc.setText("");
+                                    startActivity(aggregatesIntent);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
                 });
-                queue.add(stringRequest);
+                queue.add(json);
             }
         });
-
         return view;
     }
 }
