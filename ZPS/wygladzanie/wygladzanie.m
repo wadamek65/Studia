@@ -1,17 +1,15 @@
 % wavedemo
 close all;
 clear all;
-prog = 47
-
+prog = 20
 %Q = -8.25
-Q=-1.5
+Q=-5000
 % haart2
 % wavedec2 -> waverec2
 N = 1;
 wname = 'haar'
 
 img = imread('noise.jpg');
-imwrite(imread('clean.jpg')-img, 'diffclean.jpg');
 [x y z] = size(img);
 figure('Name', 'zaszumiony');
 imshow(img);
@@ -78,9 +76,9 @@ g_trans(abs(b_trans)<prog)=0;
 % g_ret_prog=ifwht(ifwht(g_trans)');
 % b_ret_prog=ifwht(ifwht(b_trans)');
 % 
-% r_ret_kwant=ifwht(ifwht(r_kwant)');
-% g_ret_kwant=ifwht(ifwht(g_kwant)');
-% b_ret_kwant=ifwht(ifwht(b_kwant)');
+ r_ret_kwant=ifwht(ifwht(r_kwant)');
+ g_ret_kwant=ifwht(ifwht(g_kwant)');
+ b_ret_kwant=ifwht(ifwht(b_kwant)');
 
 
 % r_ret=ifwht(ifwht(r_trans)');
@@ -127,23 +125,5 @@ roznica_kwant = imread('clean.jpg')-out_kwant;
 sums = roznica_kwant.*roznica_kwant;
 sums = sum(sums(:));
 error_kwant = sqrt(sums/(x*y*3))
-
-
-
-
-% figure;
-% imshow(out);
-% figure;
-% imshow(imread('clean.jpg')-out);
-% figure;
-% imshow(imread('noise.jpg')-out);
-% kwantowanie/progowanie
-% odwrotna
-%w wyœwietl
-%policz b³¹d
-out = imread('clean.jpg')-imread('diffclean.jpg');
-sums = out.*out;
-sums = sum(sums(:));
-error = sqrt(sums/(x*y*3))
 
 
