@@ -6,10 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
-import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.PointsGraphSeries;
+import java.util.Arrays;
 
 public class OutliersActivity extends AppCompatActivity {
 
@@ -26,6 +26,9 @@ public class OutliersActivity extends AppCompatActivity {
             double[] valuesArray = responseData.getDoubleArray("valuesArray");
             double[] outliersArray = responseData.getDoubleArray("outliersArray");
 
+//            Arrays.sort(valuesArray);
+            Arrays.sort(outliersArray);
+
             DataPoint[] valuesData = new DataPoint[valuesArray.length];
             DataPoint[] outliersData = new DataPoint[outliersArray.length];
 
@@ -34,7 +37,7 @@ public class OutliersActivity extends AppCompatActivity {
             }
             int x = 0;
             for (double outlier : outliersArray) {
-                outliersData[x++] = new DataPoint(outlier, valuesArray[(int)outlier]);
+                outliersData[x++] = new DataPoint(outlier+1, valuesArray[(int)outlier]);
             }
 
             LineGraphSeries<DataPoint> series = new LineGraphSeries<>(valuesData);
@@ -50,6 +53,8 @@ public class OutliersActivity extends AppCompatActivity {
 
             series2.setColor(Color.GREEN);
             series2.setShape(PointsGraphSeries.Shape.TRIANGLE);
+            series.setTitle("Data");
+            series2.setTitle("Outliers");
             graph.getLegendRenderer().setVisible(true);
             graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
         }

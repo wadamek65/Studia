@@ -29,7 +29,8 @@ public class AggregatesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_aggregates, container, false);
-        final Button fetchButton = view.findViewById(R.id.fetch_button);
+        final Button aggregatesButton = view.findViewById(R.id.aggregates_button);
+        final Button histogramButton = view.findViewById(R.id.histogram_button);
         final Button fillButton = view.findViewById(R.id.fill_button);
 
         final EditText dateStartInput = view.findViewById(R.id.date_start_input);
@@ -53,8 +54,7 @@ public class AggregatesFragment extends Fragment {
                 kpiInput.setText("SGSN_2012");
             }
         });
-
-        fetchButton.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String baseUrl = "http://www.healthiness-of-data.ovh/api/clusters/aggregates/";
@@ -118,7 +118,74 @@ public class AggregatesFragment extends Fragment {
                 });
                 queue.add(json);
             }
-        });
+        };
+        View.OnClickListener histogramListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String baseUrl = "http://www.healthiness-of-data.ovh/api/clusters/aggregates/";
+                String dateStart = dateStartInput.getText().toString();
+                String dateEnd = dateEndInput.getText().toString();
+                String cordID = cordIdInput.getText().toString();
+                String acronym = acronymInput.getText().toString();
+                String kpi = kpiInput.getText().toString();
+                String bins = binsInput.getText().toString();
+
+                String completeUrl = baseUrl + cordID + '/' + acronym + "?date_start=" + dateStart + "&date_end=" + dateEnd + "&kpi_basename=" + kpi + "&bins=" + bins;
+                desc.setText("Fetching data...");
+                JsonObjectRequest json = new JsonObjectRequest(Request.Method.GET, completeUrl, null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Intent aggregatesIntent = new Intent(getActivity(), HistogramActivity.class);
+                                Bundle responseData = new Bundle();
+                                try {
+
+                                    Double minValue = response.getDouble("min_val");
+                                    Double maxValue = response.getDouble("max_val");
+                                    Double mean = response.getDouble("mean");
+                                    Double stdDeviation = response.getDouble("std_deviation");
+                                    JSONArray array = response.getJSONArray("distribution");
+                                    JSONArray xarray = (JSONArray) array.get(0);
+                                    JSONArray yarray = (JSONArray) array.get(1);
+
+                                    double[] arrayX = new double[xarray.length()];
+                                    double[] arrayY = new double[yarray.length()];
+
+                                    for (int i = 0; i < xarray.length(); i++){
+                                        arrayX[i] = xarray.getDouble(i);
+                                    }
+
+                                    for (int i = 0; i < yarray.length()-1; i++){
+                                        arrayY[i] = yarray.getDouble(i);
+                                    }
+
+                                    responseData.putDoubleArray("x_array", arrayX);
+                                    responseData.putDoubleArray("y_array", arrayY);
+
+                                    responseData.putDouble("min_val", minValue);
+                                    responseData.putDouble("max_val", maxValue);
+                                    responseData.putDouble("mean", mean);
+                                    responseData.putDouble("std_deviation", stdDeviation);
+
+                                    aggregatesIntent.putExtras(responseData);
+                                    desc.setText("");
+                                    startActivity(aggregatesIntent);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+                queue.add(json);
+            }
+        };
+        aggregatesButton.setOnClickListener(clickListener);
+        histogramButton.setOnClickListener(histogramListener);
         return view;
     }
 }

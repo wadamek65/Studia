@@ -33,42 +33,27 @@ public class AggregatesActivity extends AppCompatActivity {
 
         GraphView graph = findViewById(R.id.graph_histogram);
 
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(5);
 
         Bundle responseData = getIntent().getExtras();
         if (responseData != null) {
-            double[] arrayX = responseData.getDoubleArray("x_array");
-            double[] arrayY = responseData.getDoubleArray("y_array");
-
-            DataPoint[] histogramData = new DataPoint[arrayX.length];
-            for (int i = 0; i < arrayX.length; i++) {
-                histogramData[i] = new DataPoint(arrayY[i], arrayX[i]);
-            }
-
-            BarGraphSeries<DataPoint> series = new BarGraphSeries<>(histogramData);
-            graph.addSeries(series);
-
-            series.setDataWidth(1);
-            series.setSpacing(0);
-
-            graph.getViewport().setXAxisBoundsManual(true);
-            graph.getViewport().setMinX(series.getLowestValueX() - series.getLowestValueX()/20);
-            graph.getViewport().setMaxX(series.getHighestValueX() + series.getLowestValueX()/20);
-            double diff = series.getHighestValueX() - series.getLowestValueX();
 
             PointsGraphSeries<DataPoint> series2 = new PointsGraphSeries<>(new DataPoint[] {
-                    new DataPoint(series.getLowestValueX()+diff/4, responseData.getDouble("mean")),
+                    new DataPoint(1, responseData.getDouble("mean")),
             });
 
             PointsGraphSeries<DataPoint> series3 = new PointsGraphSeries<>(new DataPoint[] {
-                    new DataPoint(series.getLowestValueX()+diff/3, responseData.getDouble("std_deviation")),
+                    new DataPoint(2, responseData.getDouble("std_deviation")),
             });
 
             PointsGraphSeries<DataPoint> series4 = new PointsGraphSeries<>(new DataPoint[] {
-                    new DataPoint(series.getLowestValueX()+diff/2, responseData.getDouble("min_val")),
+                    new DataPoint(3, responseData.getDouble("min_val")),
             });
 
             PointsGraphSeries<DataPoint> series5 = new PointsGraphSeries<>(new DataPoint[] {
-                    new DataPoint(series.getLowestValueX()+diff/5, responseData.getDouble("max_val"))
+                    new DataPoint(4, responseData.getDouble("max_val"))
             });
 
             graph.addSeries(series2);
