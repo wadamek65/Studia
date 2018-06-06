@@ -13,5 +13,9 @@
             android:id="@+id/nav_outliers"
             android:title="@string/outliers"
             />
+        <item
+            android:id="@+id/nav_data"
+            android:title="Data parameters"
+            />
     </group>
 </menu>

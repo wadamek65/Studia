@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         final AggregatesFragment aggregatesFragment = new AggregatesFragment();
         final OutliersFragment outliersFragment = new OutliersFragment();
         final HomeFragment homeFragment = new HomeFragment();
+        final DataFragment dataFragment = new DataFragment();
 
         drawerLayout = findViewById(R.id.drawer_layout);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -55,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.nav_outliers:
                                 fragmentTransaction.replace(R.id.fragment_container, outliersFragment);
+                                fragmentTransaction.commit();
+                                break;
+                            case R.id.nav_data:
+                                fragmentTransaction.replace(R.id.fragment_container, dataFragment);
                                 fragmentTransaction.commit();
                                 break;
                         }

@@ -164,32 +164,34 @@
         app:layout_constraintTop_toBottomOf="@+id/kpi_input" />
 
     <Button
-        android:id="@+id/fetch_button"
+        android:id="@+id/aggregates_button"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Fetch Data"
-        app:layout_constraintBottom_toTopOf="@+id/aggregates_footer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/bins_input_label"
-        app:layout_constraintTop_toBottomOf="@+id/bins_input" />
+        android:text="Display Aggregates"
+        app:layout_constraintBottom_toBottomOf="@id/aggregates_footer"
+        app:layout_constraintEnd_toStartOf="@id/histogram_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bins_input" />
+
+    <Button
+        android:id="@+id/histogram_button"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Display histogram"
+        app:layout_constraintBottom_toBottomOf="@id/aggregates_button"
+        app:layout_constraintEnd_toStartOf="@id/fill_button"
+        app:layout_constraintStart_toEndOf="@id/aggregates_button"
+        app:layout_constraintTop_toTopOf="@id/aggregates_button" />
 
     <Button
         android:id="@+id/fill_button"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="Auto Fill"
-        app:layout_constraintBottom_toTopOf="@+id/aggregates_footer"
-        app:layout_constraintEnd_toEndOf="@+id/cord_id_input"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cord_id_input" />
+        app:layout_constraintBottom_toBottomOf="@id/aggregates_footer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/histogram_button"
+        app:layout_constraintTop_toBottomOf="@id/bins_input" />
 
     <TextView
         android:id="@+id/aggregates_footer"
