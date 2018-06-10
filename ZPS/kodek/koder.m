@@ -34,5 +34,5 @@ end
 max_val = intmax('int8');
 divider = max_val / max(I2(:));
 I2 = I2*double(divider);
-I2 = int16(I2);
-save('test.jwa', 'I2', 'divider');
+I2 = int8(I2);
+save('test8.jwa', 'I2', 'divider');
